@@ -1,0 +1,23 @@
+b1; - Transaction 1 has begun and it has been entered in the transaction table with it's state as Active and timestamp as 1
+r1(Y); - The transaction state for transaction 1is Active so entry for data item Yhas been made in the lock table and transaction1 has acquired Read Lock on it.
+r1(Z); - The transaction state for transaction 1is Active so entry for data item Zhas been made in the lock table and transaction1 has acquired Read Lock on it.
+b2; - Transaction 2 has begun and it has been entered in the transaction table with it's state as Active and timestamp as 2
+r2(Y); - Transaction 2 has been appended in the read transaction id list for item .That is, it has also acquired Read Lock onY/nb3; - Transaction 3 has begun and it has been entered in the transaction table with it's state as Active and timestamp as 3
+r3(Y); - Transaction 3 has been appended in the read transaction id list for item .That is, it has also acquired Read Lock onY/nw1(Z); - For the data itemZand transaction ID1lock has been upgraded to Write Lock.
+w3(Y);	 - Transaction3has aquired write lock for data itemY
+Releasing locks aquired by transaction1
+Transaction1has released read lock on Y
+Transaction1has released write lock onZ
+Aborting transaction1
+Releasing locks aquired by transaction3
+Transaction3has released read lock on Y
+Aborting transaction3
+e1; - Transaction1 cannot be committed because it has already been aborted.
+e3; - Transaction3 cannot be committed because it has already been aborted.
+w2(Y); - r2(X);	 - The transaction state for transaction 2is Active so entry for data item Xhas been made in the lock table and transaction2 has acquired Read Lock on it.
+w2(X); - For the data itemXand transaction ID2lock has been upgraded to Write Lock.
+e2; - Committing Transaction2
+Releasing locks aquired by transaction2
+Transaction2has released read lock on Y
+Transaction2has released write lock onX
+Transaction2has been committed and locks have been released

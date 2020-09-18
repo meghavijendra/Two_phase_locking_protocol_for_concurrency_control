@@ -1,0 +1,74 @@
+b1; - Transaction 1 has begun and it has been entered in the transaction table with its state as Active and timestamp as 1
+ 
+r1(Y); - The transaction state for transaction 1  is Active so entry for data item Y has been made in the lock table and transaction1 has acquired Read Lock on it.
+ 
+w1(Y); - For the data itemY and transaction ID1 lock has been upgraded to Write Lock.
+ 
+r1(Z); - The transaction state for transaction 1  is Active so entry for data item Z has been made in the lock table and transaction1 has acquired Read Lock on it.
+ 
+b2; - Transaction 2 has begun and it has been entered in the transaction table with its state as Active and timestamp as 2
+ 
+r2(X); - The transaction state for transaction 2  is Active so entry for data item X has been made in the lock table and transaction2 has acquired Read Lock on it.
+ 
+w2(X); - For the data itemX and transaction ID2 lock has been upgraded to Write Lock.
+ 
+w1(Z); - For the data itemZ and transaction ID1 lock has been upgraded to Write Lock.
+ 
+r2(Y); - Transaction2has been blocked and Read operationY has been added to the waiting operation queue in the transaction table and transaction Id2 has been added to the waiting list queue in the lock table.
+e1; - Transaction 1 committed 
+ 
+ Locks acquired by transaction 1 are released
+ 
+Transaction 1 has released write lock on Y
+ 
+Transaction2has been changed from Block to Active
+Running its waiting operations
+Transaction 1 has released write lock on Z
+ 
+Transaction 1 has been committed and locks have been released
+ 
+b3; - Transaction 3 has begun and it has been entered in the transaction table with its state as Active and timestamp as 3
+ 
+r3(Z); - The transaction state for transaction 3  is Active so entry for data item Z has been made in the lock table and transaction3 has acquired Read Lock on it.
+ 
+w3(Z);	 - For the data itemZ and transaction ID3 lock has been upgraded to Write Lock.
+ 
+w2(Y); - For the data itemY and transaction ID2 lock has been upgraded to Write Lock.
+ 
+e2; - Transaction 2 committed 
+ 
+ Locks acquired by transaction 2 are released
+ 
+Transaction 2 has released write lock on X
+ 
+Transaction 2 has released write lock on Y
+ 
+Transaction 2 has been committed and locks have been released
+ 
+r3(X); - The transaction state for transaction 3  is Active so entry for data item X has been made in the lock table and transaction3 has acquired Read Lock on it.
+ 
+w3(X); - For the data itemX and transaction ID3 lock has been upgraded to Write Lock.
+ 
+b4; - Transaction 4 has begun and it has been entered in the transaction table with its state as Active and timestamp as 4
+ 
+w4(X); - Transaction4has been blocked and write operation forX has been added to the waiting operation queue of transaction table and the transactio ID4has been added to the waiting list queue of lock table. 
+e3; - Transaction 3 committed 
+ 
+ Locks acquired by transaction 3 are released
+ 
+Transaction 3 has released write lock on Z
+ 
+Transaction 3 has released write lock on X
+ 
+Transaction4has been changed from Block to Active
+Running its waiting operations
+Transaction4 has acquired Write Lock on data item XTransaction 3 has been committed and locks have been released
+ 
+e4; - Transaction 4 committed 
+ 
+ Locks acquired by transaction 4 are released
+ 
+Transaction 4 has released write lock on X
+ 
+Transaction 4 has been committed and locks have been released
+ 

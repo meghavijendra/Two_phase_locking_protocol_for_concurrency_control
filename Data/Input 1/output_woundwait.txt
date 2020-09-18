@@ -1,0 +1,48 @@
+b1; - Transaction 1 has begun and it has been entered in the transaction table with its state as Active and timestamp as 1
+ 
+r1(Y); - The transaction state for transaction 1  is Active so entry for data item Y has been made in the lock table and transaction1 has acquired Read Lock on it.
+ 
+r1(Z); - The transaction state for transaction 1  is Active so entry for data item Z has been made in the lock table and transaction1 has acquired Read Lock on it.
+ 
+b2; - Transaction 2 has begun and it has been entered in the transaction table with its state as Active and timestamp as 2
+ 
+r2(Y); - Transaction 2 has been appended in the read transaction id list for item . Read Lock on Y has also been acquired 
+
+b3; - Transaction 3 has begun and it has been entered in the transaction table with its state as Active and timestamp as 3
+ 
+r3(Y); - Transaction 3 has been appended in the read transaction id list for item . Read Lock on Y has also been acquired 
+
+w1(Z); - For the data itemZ and transaction ID1 lock has been upgraded to Write Lock.
+ 
+w3(Y); - transaction 3 has been blocked because it has higher timestamp.
+ 
+w2(Y); - transaction 2 has been blocked because it has higher timestamp.
+ 
+Locks acquired by transaction 3 are released
+
+Transaction 3 read lock on Y has been released 
+ 
+Aborting transaction 3
+
+r2(X); - Transaction 2 is in blocked state Read operation on dataitem X has been added to the 
+ 	     waiting operation queue of transaction table 2 and the transaction ID 2 
+		 has been added to the waiting list queue of lock table.
+ 
+e1; - Transaction 1 committed 
+ 
+ Locks acquired by transaction 1 are released
+ 
+Transaction 1 read lock on Y has been released 
+ 
+Transaction 1 has released write lock on Z
+ 
+Transaction 1 has been committed and locks have been released
+ 
+e3; - Transaction 3 cannot be committed because it has already been aborted.
+ 
+w2(X); - Transaction 2 is in blocked state Write operation on dataitem X has been added to the 
+ 	     waiting operation queue of transaction table 2 and the transaction ID 2 
+		 has been added to the waiting list queue of lock table.
+ 
+e2; - Commit operation on transaction 2 has been added to the waiting operation
+ 

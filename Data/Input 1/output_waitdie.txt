@@ -1,0 +1,50 @@
+b1; - Transaction 1 has begun and it has been entered in the transaction table with its state as Active and timestamp as 1
+ 
+r1(Y); - The transaction state for transaction 1 is Active so entry for data item Y has been made in the lock table and transaction 1 has acquired Read Lock on it.
+ 
+r1(Z); - The transaction state for transaction 1 is Active so entry for data item Z has been made in the lock table and transaction 1 has acquired Read Lock on it.
+ 
+b2; - Transaction 2 has begun and it has been entered in the transaction table with its state as Active and timestamp as 2
+ 
+r2(Y); - Transaction 2 has been appended in the read transaction id list for item .That is, it has also acquired Read Lock on Y
+ 
+b3; - Transaction 3 has begun and it has been entered in the transaction table with its state as Active and timestamp as 3
+ 
+r3(Y); - Transaction 3 has been appended in the read transaction id list for item .That is, it has also acquired Read Lock on Y
+ 
+w1(Z); - For the data item Zand transaction ID 1 lock has been upgraded to Write Lock.
+ 
+w3(Y); - Transaction 3 has acquired write lock for data item Y
+
+Releasing locks acquired by transaction 1
+
+Transaction 1 has released read lock on Y
+ 
+Transaction 1 has released write lock on Z
+ 
+Aborting transaction 1
+ 
+Releasing locks acquired by transaction 3
+
+Transaction 3 has released read lock on Y
+ 
+Aborting transaction 3
+ 
+w2(Y); - r2(X); - The transaction state for transaction 2 is Active so entry for data item X has been made in the lock table and transaction 2 has acquired Read Lock on it.
+ 
+e1; - Transaction 1 cannot be committed because it has already been aborted.
+ 
+e3; - Transaction 3 cannot be committed because it has already been aborted.
+ 
+w2(X); - For the data item Xand transaction ID 2 lock has been upgraded to Write Lock.
+ 
+e2; - Committing Transaction 2
+
+Releasing locks acquired by transaction 2
+
+Transaction 2 has released read lock on Y
+ 
+Transaction 2 has released write lock on X
+ 
+Transaction 2 has been committed and locks have been released
+
